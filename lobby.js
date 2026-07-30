@@ -53,3 +53,12 @@ function matchesSettings(challenge, userSettings) {
   if (challenge.rating > userSettings.maxRating) return false;
   return true;
 }
+
+function tryAccept(challenges) {
+  for (const challenge of challenges) {
+    if (matchesSettings(challenge, settings)) {
+      challenge.element.click();
+      return;
+    }
+  }
+}
