@@ -31,7 +31,8 @@ function readChallenges() {
       const ratingElement = cardElement.querySelector(
         '[class*="OpponentCardRatingNumber"]',
       );
-      const rating = Number(ratingElement.textContent.trim());
+      const ratingText = ratingElement.textContent.trim();
+      const rating = ratingText === "New" ? null : Number(ratingText);
       challenges.push({
         column: columnName,
         rating: rating,
