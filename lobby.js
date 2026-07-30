@@ -63,3 +63,8 @@ function tryAccept(challenges) {
     }
   }
 }
+
+setInterval(() => {
+  if (location.pathname === "/lobby" && settings.enabled)
+    tryAccept(readChallenges());
+}, 1000);
