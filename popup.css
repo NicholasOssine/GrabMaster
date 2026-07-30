@@ -29,3 +29,22 @@ h1 {
 .option label {
   margin-right: 6px;
 }
+
+input[type="number"] {
+  width: 60px;
+  padding: 4px;
+  background: #1e1f22;
+  color: #e6e6e6;
+  border: 1px solid #3a3d43;
+}
+
+button {
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+  background: #7aa2f7;
+  color: #12131a;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+}
