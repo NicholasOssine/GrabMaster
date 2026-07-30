@@ -7,6 +7,21 @@ const DEFAULTS = {
   acceptUnrated: false,
 };
 
+function fill(savedSettings) {
+  document.getElementById("minRating").value = savedSettings.minRating;
+  document.getElementById("maxRating").value = savedSettings.maxRating;
+  document.getElementById("acceptUnrated").checked =
+    savedSettings.acceptUnrated;
+  for (const checkbox of document.querySelectorAll("#categories input")) {
+    checkbox.checked = savedSettings.categories.includes(checkbox.value);
+  }
+  for (const radioButton of document.querySelectorAll(
+    'input[name="gameType"]',
+  )) {
+    radioButton.checked = radioButton.value === savedSettings.gameType;
+  }
+}
+
 function onButton() {
   const categories = [];
   for (const checkbox of document.querySelectorAll("#categories input")) {
@@ -29,5 +44,9 @@ function onButton() {
     acceptUnrated: document.getElementById("acceptUnrated").checked,
   });
 }
+
+chrome.storage.sync.get(DEFAULTS, (savedSettings) => {
+  fill(savedSettings);
+});
 
 document.getElementById("go").addEventListener("click", onButton);
