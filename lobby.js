@@ -12,3 +12,9 @@ let settings = { ...DEFAULTS };
 chrome.storage.sync.get(DEFAULTS, (storedSettings) => {
   settings = storedSettings;
 });
+
+chrome.storage.onChanged.addListener((storageChanges) => {
+  for (const changedKey of Object.keys(storageChanges)) {
+    settings[changedKey] = storageChanges[changedKey].newValue;
+  }
+});
