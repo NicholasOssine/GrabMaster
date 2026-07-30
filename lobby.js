@@ -58,6 +58,7 @@ function tryAccept(challenges) {
   for (const challenge of challenges) {
     if (matchesSettings(challenge, settings)) {
       challenge.element.click();
+      chrome.storage.sync.set({ enabled: false });
       return;
     }
   }
