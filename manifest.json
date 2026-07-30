@@ -8,7 +8,7 @@
 
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Grabmaster",
+    "default_title": "GrabMaster",
     "default_icon": "icon.png"
   },
 
