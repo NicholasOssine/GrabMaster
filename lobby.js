@@ -48,5 +48,8 @@ function matchesSettings(challenge, userSettings) {
   if (!userSettings.categories.includes(challenge.column)) return false;
   if (userSettings.gameType === "rated" && !challenge.fideRated) return false;
   if (userSettings.gameType === "casual" && challenge.fideRated) return false;
+  if (challenge.rating === null) return userSettings.acceptUnrated;
+  if (challenge.rating < userSettings.minRating) return false;
+  if (challenge.rating > userSettings.maxRating) return false;
   return true;
 }
