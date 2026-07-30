@@ -43,3 +43,10 @@ function readChallenges() {
   }
   return challenges;
 }
+
+function matchesSettings(challenge, userSettings) {
+  if (!userSettings.categories.includes(challenge.column)) return false;
+  if (userSettings.gameType === "rated" && !challenge.fideRated) return false;
+  if (userSettings.gameType === "casual" && challenge.fideRated) return false;
+  return true;
+}
