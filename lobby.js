@@ -28,8 +28,13 @@ function readChallenges() {
     for (const cardElement of columnElement.querySelectorAll(
       '[data-component="OpponentCard"]',
     )) {
+      const ratingElement = cardElement.querySelector(
+        '[class*="OpponentCardRatingNumber"]',
+      );
+      const rating = Number(ratingElement.textContent.trim());
       challenges.push({
         column: columnName,
+        rating: rating,
         element: cardElement,
       });
     }
