@@ -33,6 +33,13 @@ function showState() {
 }
 
 function onButton() {
+  if (enabled) {
+    chrome.storage.sync.set({ enabled: false });
+    enabled = false;
+    showState();
+    return;
+  }
+
   const categories = [];
   for (const checkbox of document.querySelectorAll("#categories input")) {
     if (checkbox.checked) categories.push(checkbox.value);
