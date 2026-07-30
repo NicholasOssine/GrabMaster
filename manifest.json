@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "GrabMaster",
+  "version": "0.1.0",
+  "description": "Automatically accept World Chess lobby challenges that match your chosen time control, opponent rating, and rated or casual preference.",
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Grabmaster"
+  }
+}
