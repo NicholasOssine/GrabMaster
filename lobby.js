@@ -36,6 +36,7 @@ function readChallenges() {
       challenges.push({
         column: columnName,
         rating: rating,
+        fideRated: cardElement.querySelector('[data-type="IconFide"]') !== null,
         element: cardElement,
       });
     }
