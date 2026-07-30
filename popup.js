@@ -7,6 +7,8 @@ const DEFAULTS = {
   acceptUnrated: false,
 };
 
+let enabled = false;
+
 function fill(savedSettings) {
   document.getElementById("minRating").value = savedSettings.minRating;
   document.getElementById("maxRating").value = savedSettings.maxRating;
@@ -20,6 +22,14 @@ function fill(savedSettings) {
   )) {
     radioButton.checked = radioButton.value === savedSettings.gameType;
   }
+}
+
+function showState() {
+  document.getElementById("state").textContent = enabled ? "On" : "Off";
+  document.getElementById("state").className = enabled ? "state on" : "state";
+  document.getElementById("go").textContent = enabled
+    ? "Stop"
+    : "Start accepting";
 }
 
 function onButton() {
@@ -43,10 +53,15 @@ function onButton() {
     maxRating: Number(document.getElementById("maxRating").value),
     acceptUnrated: document.getElementById("acceptUnrated").checked,
   });
+
+  enabled = true;
+  showState();
 }
 
 chrome.storage.sync.get(DEFAULTS, (savedSettings) => {
   fill(savedSettings);
+  enabled = savedSettings.enabled;
+  showState();
 });
 
 document.getElementById("go").addEventListener("click", onButton);

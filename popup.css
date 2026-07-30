@@ -12,6 +12,15 @@ h1 {
   font-size: 14px;
 }
 
+.state {
+  color: #9aa0a6;
+  font-size: 11px;
+}
+
+.state.on {
+  color: #9ece6a;
+}
+
 .section {
   margin-bottom: 14px;
 }
