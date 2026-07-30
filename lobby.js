@@ -18,3 +18,21 @@ chrome.storage.onChanged.addListener((storageChanges) => {
     settings[changedKey] = storageChanges[changedKey].newValue;
   }
 });
+
+function readChallenges() {
+  const challenges = [];
+  for (const columnElement of document.querySelectorAll(
+    '[data-component="OpponentsByTimeControl"]',
+  )) {
+    const columnName = columnElement.querySelector("h3").textContent.trim();
+    for (const cardElement of columnElement.querySelectorAll(
+      '[data-component="OpponentCard"]',
+    )) {
+      challenges.push({
+        column: columnName,
+        element: cardElement,
+      });
+    }
+  }
+  return challenges;
+}
