@@ -19,6 +19,17 @@ chrome.storage.onChanged.addListener((storageChanges) => {
   }
 });
 
+function parseTimeControl(cardElement) {
+  const timeText = cardElement
+    .querySelector('[data-component="TimeControlTime"]')
+    .textContent.trim();
+
+  if (/^\d+\+\d+$/.test(timeText)) return timeText;
+
+  const minutesMatch = timeText.match(/^(\d+)min$/);
+  if (minutesMatch !== null) return `${minutesMatch[1]}+0`;
+}
+
 function readChallenges() {
   const challenges = [];
   for (const columnElement of document.querySelectorAll(
@@ -36,6 +47,7 @@ function readChallenges() {
       challenges.push({
         column: columnName,
         rating: rating,
+        timeControl: parseTimeControl(cardElement),
         fideRated: cardElement.querySelector('[data-type="IconFide"]') !== null,
         element: cardElement,
       });
