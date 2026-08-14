@@ -35,6 +35,9 @@ function parseTimeControl(cardElement) {
   const compoundMatch = timeText.match(/^(\d+)h(\d+)min$/);
   if (compoundMatch !== null)
     return `${Number(compoundMatch[1]) * 60 + Number(compoundMatch[2])}+0`;
+
+  const dailyMatch = timeText.match(/^(\d+)days?$/);
+  if (dailyMatch !== null) return `${dailyMatch[1]}d`;
 }
 
 function readChallenges() {
