@@ -28,6 +28,13 @@ function parseTimeControl(cardElement) {
 
   const minutesMatch = timeText.match(/^(\d+)min$/);
   if (minutesMatch !== null) return `${minutesMatch[1]}+0`;
+
+  const hoursMatch = timeText.match(/^(\d+)hours?$/);
+  if (hoursMatch !== null) return `${Number(hoursMatch[1]) * 60}+0`;
+
+  const compoundMatch = timeText.match(/^(\d+)h(\d+)min$/);
+  if (compoundMatch !== null)
+    return `${Number(compoundMatch[1]) * 60 + Number(compoundMatch[2])}+0`;
 }
 
 function readChallenges() {
