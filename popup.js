@@ -14,9 +14,6 @@ function fill(savedSettings) {
   document.getElementById("maxRating").value = savedSettings.maxRating;
   document.getElementById("acceptUnrated").checked =
     savedSettings.acceptUnrated;
-  for (const checkbox of document.querySelectorAll("#categories input")) {
-    checkbox.checked = savedSettings.categories.includes(checkbox.value);
-  }
   for (const radioButton of document.querySelectorAll(
     'input[name="gameType"]',
   )) {
@@ -40,11 +37,6 @@ function onButton() {
     return;
   }
 
-  const categories = [];
-  for (const checkbox of document.querySelectorAll("#categories input")) {
-    if (checkbox.checked) categories.push(checkbox.value);
-  }
-
   let gameType = "any";
   for (const radioButton of document.querySelectorAll(
     'input[name="gameType"]',
@@ -54,7 +46,6 @@ function onButton() {
 
   chrome.storage.sync.set({
     enabled: true,
-    categories: categories,
     gameType: gameType,
     minRating: Number(document.getElementById("minRating").value),
     maxRating: Number(document.getElementById("maxRating").value),
