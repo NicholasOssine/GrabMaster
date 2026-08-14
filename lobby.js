@@ -1,6 +1,6 @@
 const DEFAULTS = {
   enabled: false,
-  categories: ["Bullet", "Blitz", "Rapid"],
+  timeControls: [],
   gameType: "any",
   minRating: 1400,
   maxRating: 1800,
@@ -67,7 +67,7 @@ function readChallenges() {
 }
 
 function matchesSettings(challenge, userSettings) {
-  if (!userSettings.categories.includes(challenge.column)) return false;
+  if (!userSettings.timeControls.includes(challenge.timeControl)) return false;
   if (userSettings.gameType === "rated" && !challenge.fideRated) return false;
   if (userSettings.gameType === "casual" && challenge.fideRated) return false;
   if (challenge.rating === null) return userSettings.acceptUnrated;
