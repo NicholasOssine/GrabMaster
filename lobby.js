@@ -42,26 +42,20 @@ function parseTimeControl(cardElement) {
 
 function readChallenges() {
   const challenges = [];
-  for (const columnElement of document.querySelectorAll(
-    '[data-component="OpponentsByTimeControl"]',
+  for (const cardElement of document.querySelectorAll(
+    '[data-component="OpponentCard"]',
   )) {
-    const columnName = columnElement.querySelector("h3").textContent.trim();
-    for (const cardElement of columnElement.querySelectorAll(
-      '[data-component="OpponentCard"]',
-    )) {
-      const ratingElement = cardElement.querySelector(
-        '[class*="OpponentCardRatingNumber"]',
-      );
-      const ratingText = ratingElement.textContent.trim();
-      const rating = ratingText === "New" ? null : Number(ratingText);
-      challenges.push({
-        column: columnName,
-        rating: rating,
-        timeControl: parseTimeControl(cardElement),
-        fideRated: cardElement.querySelector('[data-type="IconFide"]') !== null,
-        element: cardElement,
-      });
-    }
+    const ratingElement = cardElement.querySelector(
+      '[class*="OpponentCardRatingNumber"]',
+    );
+    const ratingText = ratingElement.textContent.trim();
+    const rating = ratingText === "New" ? null : Number(ratingText);
+    challenges.push({
+      rating: rating,
+      timeControl: parseTimeControl(cardElement),
+      fideRated: cardElement.querySelector('[data-type="IconFide"]') !== null,
+      element: cardElement,
+    });
   }
   return challenges;
 }
