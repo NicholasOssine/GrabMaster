@@ -1,6 +1,18 @@
+const VALID_TIME_CONTROLS = {
+  Bullet: ["1+0", "1+1", "1+2", "2+0", "2+1"],
+  Blitz: ["3+0", "3+1", "3+2", "3+3", "5+0", "5+3", "10+0"],
+  Rapid: ["10+10", "15+0", "15+10", "25+0", "25+10", "45+0", "45+10"],
+  Classic: ["60+0", "90+0", "120+0"],
+  Daily: ["1d", "3d", "7d"],
+};
+
 const DEFAULTS = {
   enabled: false,
-  categories: ["Bullet", "Blitz", "Rapid"],
+  timeControls: [
+    ...VALID_TIME_CONTROLS.Bullet,
+    ...VALID_TIME_CONTROLS.Blitz,
+    ...VALID_TIME_CONTROLS.Rapid,
+  ],
   gameType: "any",
   minRating: 1400,
   maxRating: 1800,
