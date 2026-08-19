@@ -78,3 +78,22 @@ button:disabled {
   color: #6b7076;
   cursor: default;
 }
+
+#timeControls input {
+  position: absolute;
+  opacity: 0;
+}
+
+#timeControls label {
+  display: inline-block;
+  padding: 3px 8px;
+  margin-right: 0;
+  border: 1px solid #3a3d43;
+  cursor: pointer;
+}
+
+#timeControls input:checked + label {
+  background: #7aa2f7;
+  color: #12131a;
+  border-color: #7aa2f7;
+}
