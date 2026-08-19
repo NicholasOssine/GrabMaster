@@ -34,12 +34,22 @@ function fill(savedSettings) {
     radioButton.checked = radioButton.value === savedSettings.gameType;
 }
 
+function showValidity() {
+  const empty =
+    document.querySelectorAll("#timeControls input:checked").length === 0;
+  document.getElementById("go").disabled = empty && !enabled;
+  document.getElementById("warning").textContent = empty
+    ? "Select at least one time control"
+    : "";
+}
+
 function showState() {
   document.getElementById("state").textContent = enabled ? "On" : "Off";
   document.getElementById("state").className = enabled ? "state on" : "state";
   document.getElementById("go").textContent = enabled
     ? "Stop"
     : "Start accepting";
+  showValidity();
 }
 
 function onButton() {
@@ -82,3 +92,6 @@ chrome.storage.sync.get(DEFAULTS, (savedSettings) => {
 });
 
 document.getElementById("go").addEventListener("click", onButton);
+
+for (const checkbox of document.querySelectorAll("#timeControls input"))
+  checkbox.addEventListener("change", showValidity);

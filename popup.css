@@ -66,3 +66,15 @@ button {
 #timeControls .option {
   margin-left: 14px;
 }
+
+.warning {
+  margin: 6px 0 0;
+  color: #f7768e;
+  font-size: 11px;
+}
+
+button:disabled {
+  background: #3a3d43;
+  color: #6b7076;
+  cursor: default;
+}
