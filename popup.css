@@ -64,7 +64,8 @@ button {
 }
 
 #timeControls .option {
-  margin-left: 14px;
+  display: inline-block;
+  margin: 0 4px 4px 0;
 }
 
 .warning {
