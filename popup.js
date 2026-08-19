@@ -49,6 +49,11 @@ function onButton() {
     return;
   }
 
+  const timeControls = [];
+  for (const checkbox of document.querySelectorAll("#timeControls input")) {
+    if (checkbox.checked) timeControls.push(checkbox.value);
+  }
+
   let gameType = "any";
   for (const radioButton of document.querySelectorAll(
     'input[name="gameType"]',
@@ -58,6 +63,7 @@ function onButton() {
 
   chrome.storage.sync.set({
     enabled: true,
+    timeControls: timeControls,
     gameType: gameType,
     minRating: Number(document.getElementById("minRating").value),
     maxRating: Number(document.getElementById("maxRating").value),
