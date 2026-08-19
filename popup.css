@@ -57,3 +57,12 @@ button {
   font-size: 13px;
   cursor: pointer;
 }
+
+#timeControls summary {
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+
+#timeControls .option {
+  margin-left: 14px;
+}
