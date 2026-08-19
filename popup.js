@@ -26,11 +26,12 @@ function fill(savedSettings) {
   document.getElementById("maxRating").value = savedSettings.maxRating;
   document.getElementById("acceptUnrated").checked =
     savedSettings.acceptUnrated;
-  for (const radioButton of document.querySelectorAll(
-    'input[name="gameType"]',
-  )) {
+
+  for (const checkbox of document.querySelectorAll("#timeControls input"))
+    checkbox.checked = savedSettings.timeControls.includes(checkbox.value);
+
+  for (const radioButton of document.querySelectorAll('input[name="gameType"]'))
     radioButton.checked = radioButton.value === savedSettings.gameType;
-  }
 }
 
 function showState() {
