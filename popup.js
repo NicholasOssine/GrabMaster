@@ -32,6 +32,20 @@ function fill(savedSettings) {
 
   for (const radioButton of document.querySelectorAll('input[name="gameType"]'))
     radioButton.checked = radioButton.value === savedSettings.gameType;
+
+  showCounts();
+}
+
+function showCounts() {
+  for (const group of document.querySelectorAll("#timeControls details")) {
+    const checked = group.querySelectorAll("input:checked").length;
+    const total = group.querySelectorAll("input").length;
+    const count = group.querySelector(".count");
+
+    if (checked === 0) count.textContent = "none";
+    else if (checked === total) count.textContent = "all";
+    else count.textContent = `${checked} of ${total}`;
+  }
 }
 
 function showValidity() {
@@ -94,4 +108,7 @@ chrome.storage.sync.get(DEFAULTS, (savedSettings) => {
 document.getElementById("go").addEventListener("click", onButton);
 
 for (const checkbox of document.querySelectorAll("#timeControls input"))
-  checkbox.addEventListener("change", showValidity);
+  checkbox.addEventListener("change", () => {
+    showValidity();
+    showCounts();
+  });
